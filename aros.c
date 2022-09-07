@@ -159,11 +159,11 @@ int main(int argc, char *argv[]) {
     pthread_t tid[num_savages+1];
 
     // Inicijalizuje se mutex da osigura medjusobno iskljucenje u grupi divljaka.
-    // dos selvagens comerem. U ''eat'' funkciji samo jedan
+    // U ''eat'' funkciji samo jedan
     // divljak moze uzeti hranu iz cinije u isto vreme
     pthread_mutex_init(&m_servings, NULL);
 
-    // Inicijalizacija semafora, za sve divljake se smatra da spavljaju
+    // Inicijalizacija semafora, za sve divljake se smatra da spavaju
     sem_init(&s_empty_pot, 0, 0);
     sem_init(&s_full_pot,  0, 0);
 
@@ -184,8 +184,4 @@ int main(int argc, char *argv[]) {
     for (i=0; i<num_savages; i++) {
         pthread_join(tid[i], NULL);
     }
-    // Ispisuje se koliko je porcija ostalo (nema problema)
-    // Specificni problem - ''Moze biti ostataka''
-    printf("Amount in pot:%d\n", servings);
-    printf("Total consumed:%d\n", total_consumed);
 }
